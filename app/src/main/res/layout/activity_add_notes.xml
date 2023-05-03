@@ -26,22 +26,81 @@
         android:ems="10"
         android:hint="@string/title"
         android:inputType="textCapSentences"
+        android:outlineProvider="none"
         android:padding="10dp"
         android:paddingStart="13dp"
-        android:textColor="@color/color_opposite"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/addBody"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@null"
+        android:layout_height="200dp"
+        android:background="#BDC3C7"
         android:gravity="top"
         android:hint="@string/write_something_down"
         android:inputType="textMultiLine"
+        android:maxLines="10"
         android:padding="10dp"
         android:paddingStart="13dp"
-        android:textColor="@color/color_opposite"
         android:textSize="18sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#A3EA"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/datepicktv"
+            android:layout_width="127dp"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="#F7DC6F"
+            android:hint="select the current date"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/datepick"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            android:text="Pick date" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#A3E4D7"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/timepicktv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:background="#F7DC6F"
+            android:hint="select the current time"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/timepick"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_margin="15dp"
+            android:layout_weight="1"
+            android:text="Pick time" />
+
+
+    </LinearLayout>
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>

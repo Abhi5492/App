@@ -19,7 +19,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MyRecyclerViewAdapter(private val context: Context, private var arrayListNotes: ArrayList<Notes>): RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var cardView: CardView
         var constraintLayout: ConstraintLayout

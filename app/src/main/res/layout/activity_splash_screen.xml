@@ -28,7 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Welcome to Daily Task Management"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"

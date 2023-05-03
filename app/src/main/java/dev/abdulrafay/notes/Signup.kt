@@ -58,7 +58,7 @@ class Signup : AppCompatActivity() {
                             editor.putString(passi,p)
                             editor.apply()
 
-                            val intent = Intent(this, MainActivity::class.java)
+                            val intent = Intent(this, SecondLanding::class.java)
                             startActivity(intent)
                             finish()
                         }

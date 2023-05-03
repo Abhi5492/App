@@ -13,8 +13,8 @@ class Splash_Screen : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                val i = Intent(this, Signup::class.java)
+                val i = Intent(this, Login::class.java)
                 startActivity(i)
-                finish() },4000 )
+                finish() },1000 )
     }
 }

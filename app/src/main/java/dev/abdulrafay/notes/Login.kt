@@ -59,7 +59,7 @@ class Login : AppCompatActivity() {
                 firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener {
                     if(it.isSuccessful){
                         Log.i("working","pauch rha h")
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, SecondLanding::class.java)
                         startActivity(intent)
                         finish()
                     }

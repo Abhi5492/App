@@ -1,5 +1,7 @@
 package dev.abdulrafay.notes
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,13 +9,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.xml.datatype.DatatypeConstants.MONTHS
 import kotlin.properties.Delegates
 
 class AddNotesActivity : AppCompatActivity() {
@@ -24,13 +25,45 @@ class AddNotesActivity : AppCompatActivity() {
     private lateinit var title: String
     private lateinit var body: String
     private var id by Delegates.notNull<Int>()
-    private lateinit var calendar: Calendar
-    private lateinit var simpleDateFormat: SimpleDateFormat
     private var date: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_notes)
+
+        val datepickbtn = findViewById<Button>(R.id.datepick)
+        val datepicktv = findViewById<TextView>(R.id.datepicktv)
+
+        val timepicker = findViewById<Button>(R.id.timepick)
+        val timepickertv = findViewById<TextView>(R.id.timepicktv)
+
+        datepickbtn.setOnClickListener{
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val dpd = DatePickerDialog(this, { view, year, monthOfYear, dayOfMonth ->
+
+                // Display Selected date in textbox
+                var month = monthOfYear.toInt()+1
+                datepicktv.text = "$dayOfMonth / ${month+1} / $year"
+
+            }, year, month, day)
+
+            dpd.show()
+        }
+
+        timepicker.setOnClickListener {
+            val c: Calendar = Calendar.getInstance()
+            val hh = c.get(Calendar.HOUR_OF_DAY)
+            val mm = c.get(Calendar.MINUTE)
+            val timePickerDialog = TimePickerDialog(this,
+                { view, hourOfDay, minute ->
+                    timepickertv.text = "$hourOfDay : $minute";
+                }, hh, mm, true )
+            timePickerDialog.show()
+        }
 
         titleEditText = findViewById(R.id.addTitle)
         bodyEditText = findViewById(R.id.addBody)
@@ -48,7 +81,6 @@ class AddNotesActivity : AppCompatActivity() {
         } else {
             textViewDate.visibility = View.VISIBLE
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -115,10 +147,16 @@ class AddNotesActivity : AppCompatActivity() {
     }
 
     private fun getDateAndTime() {
-        calendar = Calendar.getInstance()
-        simpleDateFormat = SimpleDateFormat("HH:mm, dd-MM-yyyy")
-        date = simpleDateFormat.format(calendar.time)
-        textViewDate.text = date
+
+        val timepickertv =findViewById<TextView>(R.id.timepicktv).text
+        val datepicktv = findViewById<TextView>(R.id.datepicktv).text
+        val s = "Time : "+timepickertv.toString()+ " Date : "+datepicktv.toString()
+
+//        calendar = Calendar.getInstance()
+//        simpleDateFormat = SimpleDateFormat("HH:mm, dd-MM-yyyy")
+//        date = simpleDateFormat.format(calendar.time)
+        date = s
+        textViewDate.text = s
     }
 
     override fun onBackPressed() {
